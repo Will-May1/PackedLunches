@@ -1,18 +1,20 @@
 <?php
-header("location: users.php")
-print_r($_POST);
-include_once("connection.php");//eqv. of import
+header("location: users.php");
+//print_r($_POST);
+include_once("connection.php");//import equivalent!
 if($_POST["role"]=="admin"){
     $role=1;
+#else if not elif
 }else{
     $role=0;
 }
-$role=1;
+//$role=1;
 $username=$_POST["surname"].".".$_POST["forename"][0];
-echo($username);
+//echo($username);
+//$username="bob";
 try{
     $stmt=$conn->prepare("INSERT INTO tblusers 
-    (USERID, Username, Surname, Forename, Password, Year, Balance, Role)
+    (UserID,Username,Surname,Forename,Password,Year,Balance,Role)
     VALUES
     (NULL,:Username,:Surname,:Forename,:Password,:Year,:Balance,:Role)
     ");
@@ -29,4 +31,7 @@ catch(PDOException $e)
 {
     echo("error: " . $e->getMessage());
 }
+
+
+
 ?>
